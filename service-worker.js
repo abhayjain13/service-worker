@@ -6,6 +6,7 @@ const PRECACHE_URLS = ["index.html", "sw.js", "service-worker.js"];
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener("install", (event) => {
+  console.log("Service Worker installing");
   event.waitUntil(
     caches
       .open(PRECACHE)
@@ -16,6 +17,7 @@ self.addEventListener("install", (event) => {
 
 // The activate handler takes care of cleaning up old caches.
 self.addEventListener("activate", (event) => {
+  console.log("Service Worker activating");
   const currentCaches = [PRECACHE, RUNTIME];
   event.waitUntil(
     caches
@@ -40,6 +42,7 @@ self.addEventListener("activate", (event) => {
 // If no response is found, it populates the runtime cache with the response
 // from the network before returning it to the page.
 self.addEventListener("fetch", (event) => {
+  console.log("Service Worker fetching");
   // Skip cross-origin requests, like those for Google Analytics.
   if (event.request.url.startsWith(self.location.origin)) {
     event.respondWith(
@@ -47,7 +50,6 @@ self.addEventListener("fetch", (event) => {
         if (cachedResponse) {
           return cachedResponse;
         }
-
         return caches.open(RUNTIME).then((cache) => {
           return fetch(event.request).then((response) => {
             // Put a copy of the response in the runtime cache.
