@@ -8,4 +8,4 @@ A service worker is a script that your browser runs in the background, separate 
 4. Check if the status is running or not
 
 # About Repository
-It's a basic setup of service worker in a project, what's can be improved? We can also integrate Push Notification and Background sync in this project. I will updating this code soon.
+It's a basic setup of service worker in a project, what's can be improved? We can also integrate Push Notification and Background sync in this project. I will update this code soon. Cuurrently Caching is integrated, which we can see in Development tools, Open Application > Cache Storage, where files are visible.
